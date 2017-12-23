@@ -1,0 +1,28 @@
+<div class="row">
+	<div class="col-md-4 col-md-offset-4">
+		<h4>Sigh Up</h4>
+			{{#if hasErrors}}
+			<div class="alert alert-danger">
+				{{#each messages}}
+					<p>{{this}}</p>
+				{{/each}}
+			</div>
+			{{/if}}
+		<form action="/users/signup" method="post" accept-charset="utf-8">
+			<div class="form-group">
+				<label for="email">E-mail</label>
+				<input type="text" id="email" name="email" class="form-control" placeholder="you@something.com">
+			</div>
+			<div class="form-group">
+				<label for="password">Password</label>
+				<input type="password" id="password" name="password" class="form-control" placeholder="*********">
+			</div>
+<!-- 			<div class="form-group">
+				<label for="passwordC">Confirm Password</label>
+				<input type="password" id="passwordC" name="passwordC" class="form-control" placeholder="*********">
+			</div> -->
+			<input type="hidden" name="_csrf" value="{{ csrfToken }}">
+			<button type="submit" class="btn btn-primary">Sign up!</button>
+		</form>
+	</div>
+</div>
