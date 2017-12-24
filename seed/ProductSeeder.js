@@ -6,18 +6,18 @@ mongoose.connect('localhost:27017/shopping');
 var products = [
 	new Product ({
 	imageThumb: 'https://i.ytimg.com/vi/8NiCRYZVscc/maxresdefault.jpg',
-	title: 'Master Sowrd',
+	title: 'New sword',
 	description: 'best wepon',
 	descriptionExtend: 'its the best',
-	price: 222,
+	price: 80,
 	avel: 1
 	}),
 	new Product ({
 	imageThumb: 'https://i.ytimg.com/vi/8NiCRYZVscc/maxresdefault.jpg',
-	title: 'Master Sowrd',
+	title: 'old Sowrd',
 	description: 'yay',
 	descriptionExtend: 'its the best',
-	price: 5565,
+	price: 24,
 	avel: 1
 	}),
 	new Product ({
@@ -25,7 +25,7 @@ var products = [
 	title: 'Master Sowrd',
 	description: 'best wepon',
 	descriptionExtend: 'its the best',
-	price: 43243,
+	price: 200,
 	avel: 2
 	}),
 ];
