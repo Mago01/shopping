@@ -5,7 +5,7 @@
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="#">Home</a></li>
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="/">Page 1 <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="#">Page 1-1</a></li>
           <li><a href="#">Page 1-2</a></li>
@@ -15,12 +15,23 @@
       <li><a href="#">Page 2</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Enter <span class="caret"></span></a>
+      {{#if login }}
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Account <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-          <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          <li><a href="/users/profile"><span class="glyphicon glyphicon-user"></span> My Profile</a></li>
+          <li role="separator" class="divider"></li>
+          <li><a href="/users/logout"><span class="glyphicon glyphicon-user"></span> Log Out</a></li>
         </ul>
       </li>
+      {{ else}}
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Enter <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/users/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          <li role="separator" class="divider"></li>
+          <li><a href="/users/signin"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        </ul>
+      </li>
+      {{/if}}
     </ul>
   </div>
 </nav>

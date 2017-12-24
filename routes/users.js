@@ -11,6 +11,12 @@ router.use(csrfProtection);
 router.get('/profile', isLoggedIn, function(req, res, next) {
 	res.render('users/profile');
 });
+
+router.get('/logout', isLoggedIn, function(req, res, next){
+	req.logout();
+	res.redirect('/');
+})
+
 router.use('/',notLoggedIn, function(req, res, next){
 	next();
 });
@@ -25,11 +31,6 @@ router.post('/signup',passport.authenticate('local.signup', {
 	failureFlash:true
 }));
 
-
-router.get('/logout', function(req, res, next){
-	req.logout();
-	res.redirect('/');
-})
 
 router.get('/signin', function(req, res, next){
 	var messages = req.flash('error');
