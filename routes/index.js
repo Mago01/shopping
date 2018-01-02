@@ -4,6 +4,7 @@ var router = express.Router();
 var Product = require('../models/product');
 var Cart = require('../models/cart');
 var Order = require('../models/order');
+var Address = require('../models/address');
 
 // var user = require('../models/user');
 
@@ -45,7 +46,26 @@ router.get('/shipping-address', function(req, res, next){
 	if(!req.session.cart){
 		res.redirect('/');
 	}
-		return res.render('shop/address');
+		return res.render('shop/shipping-address');
+});
+router.post('/shipping-address', function(req, res, next){
+	var address = new Address ({
+	user: req.user,
+	street: req.body.street,
+	city: req.body.city,
+	state: req.body.state,
+	zipcode: req.body.zipcode,
+	name: req.body.name
+	});
+	console.log(address);
+	req.session.address = address;
+	address.save(function(err, result){
+  		if (err){
+  		
+  		}
+  		return res.redirect('/checkout');
+  	});
+	
 });
 router.get('/checkout', function(req, res, next){
 	if(!req.session.cart){
@@ -80,17 +100,23 @@ stripe.charges.create({
   var order = new Order ({
   	user: req.user,
   	cart: cart,
-  	address: req.body.address,
-  	name:req.body.name,
+  	street: req.session.address.street,
+  	city: req.session.address.city,
+  	state:req.session.address.state,
+  	zipcode:req.session.address.zipcode,
+  	name:req.session.address.name,
   	paymentId: charge.id
   });
+  console.log(order);
+  console.log(order.address);
   order.save(function(err, result){
   	if (err){
   		
   	}
-  })
+  });
   req.flash('success', 'Successfully bought products!');
   req.session.cart = null;
+  req.session.address = null;
   res.redirect('/');
 });
 })
