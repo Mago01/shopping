@@ -42,13 +42,13 @@ router.get('/shopping-cart', function(req, res, next){
 	console.log(m.length);
 });
 
-router.get('/shipping-address', function(req, res, next){
+router.get('/shipping-address', isLoggedIn, function(req, res, next){
 	if(!req.session.cart){
 		res.redirect('/');
 	}
 		return res.render('shop/shipping-address');
 });
-router.post('/shipping-address', function(req, res, next){
+router.post('/shipping-address', isLoggedIn, function(req, res, next){
 	var address = new Address ({
 	user: req.user,
 	street: req.body.street,
@@ -67,7 +67,7 @@ router.post('/shipping-address', function(req, res, next){
   	});
 	
 });
-router.get('/checkout', function(req, res, next){
+router.get('/checkout', isLoggedIn, hasAddress, function(req, res, next){
 	if(!req.session.cart){
 		return res.redirect('/shopping-cart');
 	}
@@ -75,7 +75,7 @@ router.get('/checkout', function(req, res, next){
 	res.render('shop/checkout', {total: cart.totalPrice, totalD: 100*cart.totalPrice});
 })
 
-router.post('/checkout', function(req, res, next){
+router.post('/checkout', isLoggedIn, hasAddress, function(req, res, next){
 	if(!req.session.cart){
 		return res.redirect('/shopping-cart');
 	}
@@ -122,3 +122,19 @@ stripe.charges.create({
 })
 
 module.exports = router;
+
+function isLoggedIn(req, res, next){
+	if (req.isAuthenticated()){
+		return next();
+	}
+	req.session.oldurl = req.url;
+	res.redirect('/users/signin');
+}
+
+function hasAddress(req, res, next){
+	if (req.session.address){
+		return next();
+	}
+	req.session.oldurl = req.url;
+	res.redirect('/shipping-address');
+}
