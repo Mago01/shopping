@@ -105,7 +105,8 @@ stripe.charges.create({
   	state:req.session.address.state,
   	zipcode:req.session.address.zipcode,
   	name:req.session.address.name,
-  	paymentId: charge.id
+  	paymentId: charge.id,
+  	status: "open"
   });
   console.log(order);
   console.log(order.address);

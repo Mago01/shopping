@@ -9,7 +9,9 @@ var schema = new orderSchema({
 	state: {type:String, required:true},
 	zipcode: {type:String, required:true},
 	name: {type:String, required:true},
-	paymentId: {type:String, required:true}
+	paymentId: {type:String, required:true},
+	date: {type:Date, default: Date.now},
+	status: {type:String, required:true}
 });
 
 module.exports = mongoose.model('Order', schema);
