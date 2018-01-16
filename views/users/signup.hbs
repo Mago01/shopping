@@ -14,13 +14,13 @@
 				<input type="text" id="email" name="email" class="form-control" placeholder="you@something.com">
 			</div>
 			<div class="form-group">
-				<label for="password">Password</label>
+				<label for="password">Password  <span class="red">(Must be at least 6 characters long)</span></label>
 				<input type="password" id="password" name="password" class="form-control" placeholder="*********">
 			</div>
-<!-- 			<div class="form-group">
+			<div class="form-group">
 				<label for="passwordC">Confirm Password</label>
 				<input type="password" id="passwordC" name="passwordC" class="form-control" placeholder="*********">
-			</div> -->
+			</div>
 			<input type="hidden" name="_csrf" value="{{ csrfToken }}">
 			<button type="submit" class="btn btn-primary">Sign up!</button>
 		</form>

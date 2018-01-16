@@ -14,6 +14,7 @@ var MongoStore = require('connect-mongo')(session);
 
 var index = require('./routes/index');
 var usersRoutes = require('./routes/users');
+var adminRoutes = require('./routes/admin');
 
 var app = express();
 
@@ -47,7 +48,7 @@ app.use(function(req, res, next){
   res.locals.session = req.session;
 	next();
 })
-
+app.use('/admin', adminRoutes);
 app.use('/users', usersRoutes);
 app.use('/', index);
 
