@@ -14,7 +14,7 @@ var products = [
 	}),
 	new Product ({
 	imageThumb: 'https://i.ytimg.com/vi/8NiCRYZVscc/maxresdefault.jpg',
-	title: 'old Sowrd',
+	title: 'old Sword',
 	description: 'yay',
 	descriptionExtend: 'its the best',
 	price: 24,
@@ -22,7 +22,7 @@ var products = [
 	}),
 	new Product ({
 	imageThumb: 'https://i.ytimg.com/vi/8NiCRYZVscc/maxresdefault.jpg',
-	title: 'Master Sowrd',
+	title: 'Master Sword',
 	description: 'best wepon',
 	descriptionExtend: 'its the best',
 	price: 200,
